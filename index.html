@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>ULTRAKILL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
     html, body {
       margin: 0;
@@ -13,29 +12,29 @@
       height: 100%;
       overflow: hidden;
       background: #000;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Loader screen */
     #loader {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle, #111, #000);
+      background: radial-gradient(circle, #1a1a1a, #000);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 10;
       color: white;
+      text-align: center;
     }
 
     .spinner {
-      width: 64px;
-      height: 64px;
-      border: 6px solid rgba(255,255,255,0.2);
-      border-top: 6px solid red;
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255,255,255,0.1);
+      border-top: 5px solid #ff0000;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin 0.8s linear infinite;
       margin-bottom: 20px;
     }
 
@@ -43,7 +42,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Game iframe */
     #game-frame {
       position: absolute;
       inset: 0;
@@ -53,36 +51,34 @@
       display: none;
       background: black;
     }
+
+    #error-link {
+      display: none;
+      margin-top: 15px;
+      color: #ff4444;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   </style>
 </head>
-
 <body>
 
-  <!-- Loader -->
   <div id="loader">
     <div class="spinner"></div>
-    <div>Loading ULTRAKILL…</div>
+    <div id="status-text">MANKIND IS DEAD. BLOOD IS FUEL. HELL IS FULL.</div>
+    <a id="error-link" href="https://helpdesk.sentinet.co.za/resources/semag/ultrakill/index.html" target="_blank">
+      Connection Reset? Click here to open game directly.
+    </a>
   </div>
 
-  <!-- Game -->
   <iframe
     id="game-frame"
     src="https://helpdesk.sentinet.co.za/resources/semag/ultrakill/index.html"
+    allow="autoplay; fullscreen; keyboard; pointer-lock"
+    referrerpolicy="no-referrer"
     allowfullscreen
-    allow="autoplay; fullscreen"
   ></iframe>
 
-  <script>
-    const iframe = document.getElementById("game-frame");
-    const loader = document.getElementById("loader");
-
-    iframe.addEventListener("load", () => {
-      loader.style.display = "none";
-      iframe.style.display = "block";
-    });
-  </script>
-
+  <script src="ultrakill.js"></script>
 </body>
 </html>
-
-
